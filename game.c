@@ -39,16 +39,12 @@ char P(char board[hens][kuns],char c)
 	char f;
 	int X;
 	int Y;
-	if (c == 'O')
-		printf("Íæ¼Ò1ÇëÊäÈëÄãÏÂÒ»²½Æå¡®O¡¯µÄ×ø±ê\n");
-	else{
-		printf("Íæ¼Ò2ÇëÊäÈëÄãÏÂÒ»²½Æå¡®X¡¯µÄ×ø±ê\n");
-	}
+		printf("çŽ©å®¶1è¯·è¾“å…¥ä½ ä¸‹ä¸€æ­¥æ£‹â€˜%câ€™çš„åæ ‡\n",c);
 	while (1)
 	{
-		printf("X×ø±êÎª");
+		printf("Xåæ ‡ä¸º");
 		scanf("%d", &Y);
-		printf("Y×ø±êÎª");
+		printf("Yåæ ‡ä¸º");
 		scanf("%d", &X);
 		if ((X > 0 && Y > 0) && (X <= hen  && Y <=kun))
 		{
@@ -63,12 +59,12 @@ char P(char board[hens][kuns],char c)
 			}
 			else
 			{
-				printf("¸ÃÎ»ÖÃÒÑ±»Õ¼ÓÃ\n");
+				printf("è¯¥ä½ç½®å·²è¢«å ç”¨\n");
 			}
 		}
 		else
 		{
-			printf("¸ÃÎ»ÖÃ²»ºÏ·¨\n");
+			printf("è¯¥ä½ç½®ä¸åˆæ³•\n");
 		}
 	}
 }
@@ -77,7 +73,7 @@ char Inspect(char board[hens][kuns],  int X, int Y)
 {
 	int j;
 	
-    //ÊúÐÐ¼ì²â
+    //ç«–è¡Œæ£€æµ‹
 	int cot = 0;
 		for (j = 1; j <= dif; j++)
 		{
@@ -100,7 +96,7 @@ char Inspect(char board[hens][kuns],  int X, int Y)
 		if (cot >= dif)
 			return board[X][Y];
 	
-		//ºáÐÐ¼ì²â
+		//æ¨ªè¡Œæ£€æµ‹
 		 cot = 0;
 		for (j = 1; j <= dif; j++)
 		{
@@ -123,7 +119,7 @@ char Inspect(char board[hens][kuns],  int X, int Y)
 		if (cot >= dif)
 			return board[X][Y];
 
-		//Ò»Èý¼ì²â
+		//ä¸€ä¸‰æ£€æµ‹
 		cot = 0;
 		for (j = 1; j <= dif; j++)
 		{
@@ -146,7 +142,7 @@ char Inspect(char board[hens][kuns],  int X, int Y)
 		if (cot >= dif)
 			return board[X][Y];
 
-		//¶þËÄ¼ì²â
+		//äºŒå››æ£€æµ‹
 		 cot = 0;
 		for (j = 1; j <= dif; j++)
 		{
@@ -192,9 +188,9 @@ void Game()
 			ret = 'F';
 	}
 	if (ret == 'F')
-		printf("Æ½¾Ö\n");
+		printf("å¹³å±€\n");
 	if (ret == 'O')
-		printf("Íæ¼Ò1('O')Ê¤Àû\n");
+		printf("çŽ©å®¶1('O')èƒœåˆ©\n");
 	if (ret == 'X')
-		printf("Íæ¼Ò2('X')Ê¤Àû\n");
+		printf("çŽ©å®¶2('X')èƒœåˆ©\n");
 }
