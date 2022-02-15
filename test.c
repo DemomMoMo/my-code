@@ -4,16 +4,16 @@
 void begin()
 {
 	printf("#########################################################\n");
-	printf("#########      ①add           ②del         ############\n");
-	printf("#########      ③search        ④modify      ############\n");
-	printf("#########      ⑤show          ⑥sort        ############\n");
-	printf("#########      〇exit                        ############\n");
+	printf("#########      鈶燼dd           鈶el         ############\n");
+	printf("#########      鈶earch        鈶odify      ############\n");
+	printf("#########      鈶how          鈶ort        ############\n");
+	printf("#########      銆噀xit                        ############\n");
 	printf("#########################################################\n");
 }
 
 enum
 {
-	exit,
+	Exit,
 	add,
 	del,
 	search,
@@ -26,10 +26,10 @@ int main()
 {
 	struct list ps;
 	Zero(&ps);
-	begin();
 	int cos = 1;
-	while (cos!=0){
-		printf("请输入你想要服务的数字编号\n");
+	while (cos != 0){
+		begin();
+		printf("璇疯緭鍏ヤ綘鎯宠鏈嶅姟鐨勬暟瀛楃紪鍙穃n");
 		scanf("%d", &cos);
 		switch (cos){
 		case add:
@@ -47,10 +47,13 @@ int main()
 		case show:
 			Show(&ps);
 			break;
-		case exit:
+		case sort:
+			Sort(&ps);
+			break;
+		case Exit:
 			break;
 		default:
-			printf("未能识别请重新输入\n");
+			printf("鏈兘璇嗗埆璇烽噸鏂拌緭鍏n");
 		}
 	}
 	return 0;
