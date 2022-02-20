@@ -1,13 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include"head.h"
 
-void Zero(struct list* ps)
-{
-	memset(ps->me,0,sizeof(ps->me));
-	ps->size = 0;
-}
-
-int check(const struct list*ps, char p[15])
+int check(const list*ps, char p[15])
 {
 	int i;
 	for (i = 0; i < ps->size; i++)
@@ -18,12 +12,15 @@ int check(const struct list*ps, char p[15])
 	return -1;
 }
 
-void Add(struct list* ps)
+void Add(list* ps)
 {
-	if (ps->size >= Max)
+	if (ps->size ==ps->space )
 	{
-		printf("通讯录已满\n");
-		return;
+		if (Sec(ps) == NULL)
+		{
+			printf("空间已满\n");
+			return;
+		}
 	}
 	printf("请依次输入新建通讯录的用户名、年龄、性别、号码\n");
 	char p[15];
@@ -42,7 +39,7 @@ void Add(struct list* ps)
 	printf("添加成功\n");
 }
 
-void Show(struct list* ps)
+void Show( list* ps)
 {
 	int i;
 	printf("%-8s\t%-4s\t%-12s\t%-20s\n","姓名","年龄","性别" ,"号码");
@@ -55,7 +52,7 @@ void Show(struct list* ps)
 			ps->me[i].num);
 	}
 }
-void Del(struct list* ps)
+void Del( list* ps)
 {
 	char p[15];
 	printf("请输入你想删除的用户姓名\n");
@@ -75,7 +72,7 @@ void Del(struct list* ps)
 	}
 }
 
-void Modify(struct list* ps)
+void Modify(list* ps)
 {
 	char p[15];
 	printf("请输入你想修改的用户姓名\n");
@@ -117,28 +114,28 @@ void Search(struct list* ps)
 
 int my_name(const void *a, const void*b)
 {
-	int ret = strcmp(((struct list*)a)->me->name, ((struct list*)b)->me->name);
+	int ret = strcmp((( list*)a)->me->name, (( list*)b)->me->name);
 	return ret;
 }
 
 int my_age(const void *a, const void*b)
 {
-	return ((struct list*)a)->me->age-((struct list*)b)->me->age;
+	return (( list*)a)->me->age-(( list*)b)->me->age;
 }
 
 int my_gender(const void *a, const void*b)
 {
-	int ret = strcmp(((struct list*)a)->me->gender, ((struct list*)b)->me->gender);
+	int ret = strcmp((( list*)a)->me->gender, (( list*)b)->me->gender);
 	return ret;
 }
 
 int my_num(const void *a, const void*b)
 {
-	int ret = strcmp(((struct list*)a)->me->num, ((struct list*)b)->me->num);
+	int ret = strcmp((( list*)a)->me->num, (( list*)b)->me->num);
 	return ret;
 }
 
-void Sort(struct list* ps)
+void Sort( list* ps)
 {
 	int(*hum[4])(const void *, const void*) = { my_name, my_age, my_gender, my_num };
 	printf("请输入与你所想要的排序方式对应的数字\n");
@@ -158,4 +155,20 @@ void Sort(struct list* ps)
 		break;
 	}
 }
+
+ void Fir( list* ps)
+{
+	 ps->me= (infor*)malloc( Def * sizeof(infor));
+	 ps->size = 0;
+	 ps->space = Def;
 }
+
+ infor* Sec(list* ps)
+ {
+	 infor* p = (infor*)malloc(sizeof(*(ps->me))+2*sizeof(list));
+	 if (p == NULL)
+		 return NULL;
+	 ps->me = p;
+	 ps->space += 2;
+	 return p;
+ }
