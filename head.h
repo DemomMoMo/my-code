@@ -2,28 +2,29 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
-#define Max 40
+#define Def 3
 
-struct infor
+typedef struct infor
 {
-	char name[15];
+	char name[13];
 	int age;
 	char gender[6];
 	char num[12];
-};
+}infor;
 
-struct list
+typedef struct list
 {
-	struct infor me[Max];
+	 infor *me;
 	int size;
-};
+	int space;
+}list;
 
 
-
-void Zero(struct list* ps);
-void Add(struct list* ps);
-void Show(struct list* ps);
-void Del(struct list* ps);
-void Modify(struct list* ps);
-void Search(struct list* ps);
-void Sort(struct list* ps);
+void Add(list* ps);
+void Show(list* ps);
+void Del(list* ps);
+void Modify(list* ps);
+void Search(list* ps);
+void Sort(list* ps);
+void Fir(list* ps);
+infor* Sec(list* ps);
