@@ -24,8 +24,8 @@ enum
 
 int main()
 {
-	struct list ps;
-	Zero(&ps);
+	 list ps;
+	Fir(&ps);
 	int cos = 1;
 	while (cos != 0){
 		begin();
