@@ -2,7 +2,9 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<errno.h>
 #define Def 3
+
 
 typedef struct infor
 {
@@ -27,4 +29,7 @@ void Modify(list* ps);
 void Search(list* ps);
 void Sort(list* ps);
 void Fir(list* ps);
-infor* Sec(list* ps);
+void Save(list*ps);
+infor* Sec(list* ps, int n);
+void Ed(list*ps);
+void Read(list*ps);
