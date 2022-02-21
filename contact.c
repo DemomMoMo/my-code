@@ -16,7 +16,7 @@ void Add(list* ps)
 {
 	if (ps->size ==ps->space )
 	{
-		if (Sec(ps) == NULL)
+		if (Sec(ps,2) == NULL)
 		{
 			printf("空间已满\n");
 			return;
@@ -163,12 +163,51 @@ void Sort( list* ps)
 	 ps->space = Def;
 }
 
- infor* Sec(list* ps)
+ infor* Sec(list* ps,int n)
  {
-	 infor* p = (infor*)malloc(sizeof(*(ps->me))+2*sizeof(list));
+	 infor* p = (infor*)malloc(sizeof(*(ps->me))+n*sizeof(infor));
 	 if (p == NULL)
 		 return NULL;
-	 ps->me = p;
-	 ps->space += 2;
+	 ps->space += n;
 	 return p;
+ }
+
+ void Ed(list*ps)
+ {
+	 free(ps->me);
+	 ps = NULL;
+ }
+
+ void Save(list*ps)
+ {
+	 FILE* pf = fopen("mydate.dat", "wb");
+	 if (pf == NULL)
+	 {
+		 printf("%s\n",strerror(errno));
+		 return;
+	 }
+	 int i;
+	 for (i = 0; i < ps->size; i++)
+		 fwrite(&(ps->me[i]),sizeof(infor),1,pf);
+	 fclose(pf);
+	 pf = NULL;
+ }
+
+ void Read(list*ps)
+ {
+	 infor tmp = { 0 };
+	 FILE* pf = fopen("mydate.dat", "rb");
+	 if (pf == NULL)
+	 {
+		 printf("%s\n", strerror(errno));
+		 return;
+	 }
+	 while (fread(&tmp, sizeof(infor), 1, pf))
+	 {
+		 Sec(ps, 1);
+		 ps->me[ps->size] = tmp;
+		 ps->size++;
+	 }
+	 fclose(pf);
+	 pf = NULL;
  }
