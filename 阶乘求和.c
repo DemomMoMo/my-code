@@ -19,15 +19,15 @@ int main()
 	int i;
 	int X;
 	int f;
-	int c;
+	int c=1;
 	X = 0;
 	scanf("%d", &f);
 		f = f + 1;
 	for (i = 1; i <f; i++)
 	{
-		c = AC(i);
+		c *= i;
 		X = X + c;
 	}
-	printf("%d\n", X);
+	printf("w=%d\n", X);
 	return 0;
 }
