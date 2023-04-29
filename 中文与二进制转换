@@ -1,0 +1,23 @@
+ public static string jiema(string s)           //二进制转中文  
+        {
+            System.Text.RegularExpressions.CaptureCollection cs =
+             System.Text.RegularExpressions.Regex.Match(s, @"([01]{8})+").Groups[1].Captures;
+            byte[] data = new byte[cs.Count];
+            for (int i = 0; i < cs.Count; i++)
+            {
+                data[i] = Convert.ToByte(cs[i].Value, 2);
+            }
+            return Encoding.Unicode.GetString(data, 0, data.Length);
+        }
+        
+           public static string bianma(string s)             //中文转二进制
+        {
+            byte[] data = Encoding.Unicode.GetBytes(s);
+            StringBuilder result = new StringBuilder(data.Length * 8);
+
+            foreach (byte b in data)
+            {
+                result.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
+            }
+            return result.ToString();
+        }
